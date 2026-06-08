@@ -1,17 +1,38 @@
 import { useOrders } from "../context/OrderContext";
 import type { Order } from "../types/Order";
 
-const statuses: Order["status"][] = ["Pendiente", "Confirmado", "Enviado"];
+const statuses: Order["status"][] = [
+  "Pendiente",
+  "Confirmado",
+  "Enviado",
+];
 
 export default function AdminOrdersPage() {
-  const { orders, updateOrderStatus } = useOrders();
+  const {
+    orders,
+    loading,
+    error,
+    updateOrderStatus,
+  } = useOrders();
+
+  if (loading) {
+    return <p>Cargando pedidos...</p>;
+  }
+
+  if (error) {
+    return <p className="text-red-600">{error}</p>;
+  }
 
   return (
     <div>
-      <h1 className="text-4xl font-black mb-8">Gestión de pedidos</h1>
+      <h1 className="text-4xl font-black mb-8">
+        Gestión de pedidos
+      </h1>
 
       {orders.length === 0 ? (
-        <p className="text-gray-600">Todavía no hay pedidos registrados.</p>
+        <p className="text-gray-600">
+          Todavía no hay pedidos registrados.
+        </p>
       ) : (
         <div className="overflow-x-auto border rounded-2xl">
           <table className="w-full text-left">
@@ -27,9 +48,18 @@ export default function AdminOrdersPage() {
             <tbody>
               {orders.map((order) => (
                 <tr key={order.id} className="border-t">
-                  <td className="p-4">{order.customerName}</td>
-                  <td className="p-4">{order.email}</td>
-                  <td className="p-4">{order.total.toFixed(2)}€</td>
+                  <td className="p-4">
+                    {order.customerName}
+                  </td>
+
+                  <td className="p-4">
+                    {order.email}
+                  </td>
+
+                  <td className="p-4">
+                    {order.total.toFixed(2)}€
+                  </td>
+
                   <td className="p-4">
                     <select
                       value={order.status}
@@ -42,7 +72,10 @@ export default function AdminOrdersPage() {
                       className="border rounded-lg px-3 py-2"
                     >
                       {statuses.map((status) => (
-                        <option key={status} value={status}>
+                        <option
+                          key={status}
+                          value={status}
+                        >
                           {status}
                         </option>
                       ))}

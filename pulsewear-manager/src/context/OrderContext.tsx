@@ -1,10 +1,16 @@
 import {
   createContext,
   useContext,
+  useEffect,
   useState,
   type ReactNode,
 } from "react";
 import type { Order } from "../types/Order";
+import {
+  createOrder as createOrderRequest,
+  getOrders,
+  updateOrderStatus as updateOrderStatusRequest,
+} from "../api/client";
 
 interface CreateOrderData {
   customerName: string;
@@ -16,39 +22,59 @@ interface CreateOrderData {
 
 interface OrderContextType {
   orders: Order[];
-  createOrder: (data: CreateOrderData) => void;
-  updateOrderStatus: (id: number, status: Order["status"]) => void;
+  loading: boolean;
+  error: string;
+  createOrder: (data: CreateOrderData) => Promise<void>;
+  updateOrderStatus: (id: number, status: Order["status"]) => Promise<void>;
 }
 
 const OrderContext = createContext<OrderContextType | null>(null);
 
 export function OrderProvider({ children }: { children: ReactNode }) {
   const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const createOrder = (data: CreateOrderData) => {
-    const newOrder: Order = {
-      id: Date.now(),
-      customerName: data.customerName,
-      email: data.email,
-      address: data.address,
-      phone: data.phone,
-      total: data.total,
-      status: "Pendiente",
-    };
+  useEffect(() => {
+    async function loadOrders() {
+      try {
+        const data = await getOrders();
+        setOrders(data);
+      } catch {
+        setError("No se pudieron cargar los pedidos.");
+      } finally {
+        setLoading(false);
+      }
+    }
 
+    loadOrders();
+  }, []);
+
+  const createOrder = async (data: CreateOrderData) => {
+    const newOrder = await createOrderRequest(data);
     setOrders((prev) => [...prev, newOrder]);
   };
 
-  const updateOrderStatus = (id: number, status: Order["status"]) => {
+  const updateOrderStatus = async (id: number, status: Order["status"]) => {
+    const updatedOrder = await updateOrderStatusRequest(id, status);
+
     setOrders((prev) =>
       prev.map((order) =>
-        order.id === id ? { ...order, status } : order
+        order.id === id ? updatedOrder : order
       )
     );
   };
 
   return (
-    <OrderContext.Provider value={{ orders, createOrder, updateOrderStatus }}>
+    <OrderContext.Provider
+      value={{
+        orders,
+        loading,
+        error,
+        createOrder,
+        updateOrderStatus,
+      }}
+    >
       {children}
     </OrderContext.Provider>
   );

@@ -3,7 +3,7 @@ import type { Product } from "../types/Product";
 export const products: Product[] = [
   {
     id: 1,
-    name: "PRUEBA BACKEND",
+    name: "Sudadera active oversize",
     category: "Sudaderas",
     price: 59.99,
     rating: 4.9,
