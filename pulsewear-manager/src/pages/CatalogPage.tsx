@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import ProductCard from "../components/ProductCard";
-import { mockProducts } from "../utils/mockProducts";
+import { useProducts } from "../hooks/useProducts";
 
 const categories = [
   "Todas",
@@ -15,8 +15,10 @@ export default function CatalogPage() {
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Todas");
 
+  const { products, loading, error } = useProducts();
+
   const filteredProducts = useMemo(() => {
-    return mockProducts.filter((product) => {
+    return products.filter((product) => {
       const matchesSearch = product.name
         .toLowerCase()
         .includes(search.toLowerCase());
@@ -26,9 +28,17 @@ export default function CatalogPage() {
 
       return matchesSearch && matchesCategory;
     });
-  }, [search, selectedCategory]);
+}, [search, selectedCategory, products]);
 
-  return (
+if (loading) {
+  return <p>Cargando productos...</p>;
+}
+
+if (error) {
+  return <p className="text-red-600">{error}</p>;
+}
+
+return (
     <div>
       <h1 className="text-4xl font-black mb-8">Catálogo</h1>
 
