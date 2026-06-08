@@ -1,13 +1,19 @@
 import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./routes/AppRouter";
 import MainLayout from "./layouts/MainLayout";
+import { CartProvider } from "./context/CartContext";
+import { OrderProvider } from "./context/OrderContext";
 
 function App() {
   return (
     <BrowserRouter>
-      <MainLayout>
-        <AppRouter />
-      </MainLayout>
+      <CartProvider>
+        <OrderProvider>
+          <MainLayout>
+            <AppRouter />
+          </MainLayout>
+        </OrderProvider>
+      </CartProvider>
     </BrowserRouter>
   );
 }

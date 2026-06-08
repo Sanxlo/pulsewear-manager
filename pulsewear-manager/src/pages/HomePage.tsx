@@ -4,10 +4,10 @@ import ProductCard from "../components/ProductCard";
 import ReviewCard from "../components/ReviewCard";
 
 const featuredProducts = [
-  { name: "Sudadera Oversize Pulse", price: 59.99, category: "Sudaderas" },
-  { name: "Camiseta Training Core", price: 29.99, category: "Entrenamiento" },
-  { name: "Short Deportivo Flex", price: 34.99, category: "Pantalones Cortos" },
-  { name: "Gorra Urban Sport", price: 19.99, category: "Accesorios" },
+  { id: 1, name: "Sudadera Oversize Pulse", price: 59.99, category: "Sudaderas", rating: 4.9, image: "" },
+  { id: 2, name: "Camiseta Training Core", price: 29.99, category: "Entrenamiento", rating: 4.7, image: "" },
+  { id: 3, name: "Short Deportivo Flex", price: 34.99, category: "Pantalones Cortos", rating: 4.8, image: "" },
+  { id: 4, name: "Gorra Urban Sport", price: 19.99, category: "Accesorios", rating: 4.6, image: "" },
 ];
 
 const reviews = [
@@ -56,7 +56,7 @@ export default function HomePage() {
 
         <div className="grid md:grid-cols-4 gap-6">
           {featuredProducts.map((product) => (
-            <ProductCard key={product.name} {...product} />
+        <ProductCard key={product.name} product={product} />
           ))}
         </div>
       </section>
