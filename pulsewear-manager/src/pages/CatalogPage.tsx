@@ -39,7 +39,7 @@ if (error) {
 }
 
 return (
-    <div>
+  <div className="max-w-7xl mx-auto px-6 py-8">
       <h1 className="text-4xl font-black mb-8">Catálogo</h1>
 
       <div className="grid md:grid-cols-2 gap-4 mb-8">

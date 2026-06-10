@@ -69,7 +69,7 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="grid lg:grid-cols-2 gap-10">
+  <div className="max-w-7xl mx-auto px-6 py-8">
       <section>
         <h1 className="text-4xl font-black mb-8">
           Checkout

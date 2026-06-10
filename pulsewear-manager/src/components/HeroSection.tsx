@@ -2,42 +2,52 @@ import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
-    <section className="grid lg:grid-cols-2 gap-10 items-center py-16">
-      <div>
-        <p className="uppercase tracking-widest text-sm font-semibold text-gray-500">
-          Nueva colección
-        </p>
+    <section className="relative h-[720px] w-full overflow-hidden">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src="/hero.mp4" type="video/mp4" />
+      </video>
 
-        <h1 className="text-5xl lg:text-7xl font-black mt-4 leading-tight">
-          Entrena fuerte. Vive mejor.
-        </h1>
+      <div className="absolute inset-0 bg-black/55" />
 
-        <p className="text-gray-600 text-lg mt-6 max-w-xl">
-          Ropa deportiva premium diseñada para el entrenamiento,
-          el estilo urbano y el día a día.
-        </p>
+      <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6">
+        <div className="max-w-3xl text-white">
+          <p className="uppercase tracking-widest text-sm font-semibold mb-4">
+            Nueva colección
+          </p>
 
-        <div className="flex gap-4 mt-8">
-          <Link
-            to="/catalog"
-            className="bg-black text-white px-6 py-3 rounded-full font-semibold"
-          >
-            Ver Catálogo
-          </Link>
+          <h1 className="text-6xl lg:text-8xl font-black leading-tight">
+            Diseñado para entrenar.
+            <br />
+            Creado para destacar.
+          </h1>
 
-          <Link
-            to="/compare"
-            className="border px-6 py-3 rounded-full font-semibold"
-          >
-            Comparar Productos
-          </Link>
+          <p className="text-xl text-gray-200 mt-6 max-w-xl">
+            Ropa deportiva premium pensada para el entrenamiento,
+            el estilo urbano y el día a día.
+          </p>
+
+          <div className="flex gap-4 mt-8">
+            <Link
+              to="/catalog"
+              className="bg-white text-black px-8 py-4 rounded-full font-bold"
+            >
+              Ver Catálogo
+            </Link>
+
+            <Link
+              to="/compare"
+              className="border border-white text-white px-8 py-4 rounded-full font-bold"
+            >
+              Comparar Productos
+            </Link>
+          </div>
         </div>
-      </div>
-
-      <div className="h-[520px] rounded-3xl bg-gray-200 flex items-center justify-center">
-        <span className="text-gray-500 text-xl">
-          Imagen Principal
-        </span>
       </div>
     </section>
   );

@@ -1,5 +1,8 @@
-import { orders } from "../data/orders";
+import fs from "fs";
+import path from "path";
 import type { Order } from "../types/Order";
+
+const ordersFilePath = path.join(process.cwd(), "server/src/data/orders.json");
 
 interface CreateOrderData {
   customerName: string;
@@ -9,12 +12,23 @@ interface CreateOrderData {
   total: number;
 }
 
+function readOrders(): Order[] {
+  const data = fs.readFileSync(ordersFilePath, "utf-8");
+  return JSON.parse(data) as Order[];
+}
+
+function writeOrders(orders: Order[]) {
+  fs.writeFileSync(ordersFilePath, JSON.stringify(orders, null, 2));
+}
+
 export const orderService = {
   getAll() {
-    return orders;
+    return readOrders();
   },
 
   create(data: CreateOrderData) {
+    const orders = readOrders();
+
     const newOrder: Order = {
       id: Date.now(),
       customerName: data.customerName,
@@ -26,19 +40,23 @@ export const orderService = {
     };
 
     orders.push(newOrder);
+    writeOrders(orders);
 
     return newOrder;
   },
 
   updateStatus(id: number, status: Order["status"]) {
-    const order = orders.find((item) => item.id === id);
+    const orders = readOrders();
 
-    if (!order) {
+    const orderIndex = orders.findIndex((order) => order.id === id);
+
+    if (orderIndex === -1) {
       return null;
     }
 
-    order.status = status;
+    orders[orderIndex].status = status;
+    writeOrders(orders);
 
-    return order;
+    return orders[orderIndex];
   },
 };
