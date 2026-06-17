@@ -1,7 +1,10 @@
 import type { Product } from "../types/Product";
 import type { Order } from "../types/Order";
 
-const API_URL = "http://localhost:3001/api/v1";
+const API_URL =
+  import.meta.env.PROD
+    ? "/api/v1"
+    : "http://localhost:3001/api/v1";
 
 export async function getProducts(): Promise<Product[]> {
   const response = await fetch(`${API_URL}/products`);
