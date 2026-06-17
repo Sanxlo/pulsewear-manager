@@ -1,210 +1,157 @@
-PulseWear
+PulseWear Manager
 
-PulseWear es una aplicación web fullstack desarrollada con React, TypeScript, Tailwind CSS, Node.js y Express.
+Aplicación web fullstack desarrollada con React, TypeScript, Tailwind CSS y una API REST basada en Express.
 
-La aplicación simula una tienda online de ropa deportiva permitiendo a los usuarios explorar productos, compararlos, añadirlos al carrito y realizar pedidos. Además incluye un panel administrativo para gestionar pedidos y controlar el flujo de ventas.
+Descripción
 
-Características principales
-Cliente
-Catálogo de productos.
-Búsqueda por nombre.
-Filtrado por categorías.
-Detalle de producto.
-Selección de talla.
-Productos relacionados.
-Comparador de productos.
-Carrito de compra.
-Checkout.
-Validación de formularios.
-Diseño responsive.
-Administración
-Gestión de pedidos.
-Búsqueda de clientes.
-Filtrado por estado.
-Actualización de estados.
-Eliminación automática de pedidos recibidos.
-Resumen de ventas.
-Backend
-API REST propia.
-Arquitectura por capas.
-Validación de datos.
-Persistencia mediante archivos JSON.
+PulseWear Manager es una tienda online de ropa deportiva que permite a los usuarios navegar por un catálogo de productos, comparar artículos, añadir productos al carrito, realizar pedidos y gestionar pedidos desde un panel de administración.
+
+El proyecto ha sido desarrollado aplicando metodologías ágiles, arquitectura por capas en el backend y tipado completo con TypeScript tanto en frontend como en backend.
+
 Tecnologías utilizadas
 Frontend
 React
 TypeScript
+Vite
 Tailwind CSS
 React Router
 Context API
-Fetch API
+Lucide React
 Backend
 Node.js
 Express
 TypeScript
-Gestión del proyecto
-Git
-GitHub
-Trello
+Despliegue
+Vercel
+Funcionalidades
+Cliente
+Visualización de catálogo de productos
+Filtros por categoría
+Vista de detalle de producto
+Selección de talla
+Comparador de productos
+Carrito de compra
+Checkout
+Creación de pedidos
+Administración
+Visualización de pedidos
+Búsqueda de pedidos
+Filtrado por estado
+Actualización de estados
+Eliminación automática de pedidos recibidos
 Estructura del proyecto
-PulseWear/
+pulsewear-manager/
 │
 ├── docs/
 │
-├── src/
-│   ├── api/
-│   ├── components/
-│   ├── context/
-│   ├── hooks/
-│   ├── pages/
-│   ├── types/
-│   └── utils/
+├── api/
+│
+├── public/
 │
 ├── server/
 │   └── src/
-│       ├── routes/
 │       ├── controllers/
 │       ├── services/
+│       ├── routes/
 │       ├── data/
 │       └── types/
 │
+├── src/
+│   ├── api/
+│   ├── assets/
+│   ├── components/
+│   ├── context/
+│   ├── hooks/
+│   ├── layouts/
+│   ├── pages/
+│   ├── routes/
+│   ├── types/
+│   └── utils/
+│
 └── README.md
+API
+
+Endpoints disponibles:
+
+Productos
+
+GET /api/v1/products
+
+Obtiene todos los productos.
+
+Pedidos
+
+GET /api/v1/orders
+
+Obtiene todos los pedidos.
+
+POST /api/v1/orders
+
+Crea un nuevo pedido.
+
+PATCH /api/v1/orders//status
+
+Actualiza el estado de un pedido.
+
 Instalación
-Clonar repositorio
-git clone https://github.com/TU-USUARIO/pulsewear.git
-cd pulsewear
-Instalación frontend
-npm install
 
-Ejecutar:
+Clonar repositorio:
 
-npm run dev
-
-Frontend:
-
-http://localhost:5173
-Instalación backend
-
-Entrar al directorio del servidor:
-
-cd server
+git clone https://github.com/Sanxlo/pulsewear-manager.git
 
 Instalar dependencias:
 
 npm install
 
-Ejecutar:
+Ejecutar frontend:
 
 npm run dev
 
-Backend:
+Ejecutar backend:
 
-http://localhost:3001
-API REST
-Productos
-Obtener productos
-GET /api/v1/products
-Pedidos
-Obtener pedidos
-GET /api/v1/orders
-Crear pedido
-POST /api/v1/orders
-Actualizar estado
-PATCH /api/v1/orders/:id/status
-Eliminar pedido
-DELETE /api/v1/orders/:id
-Gestión de estado
-
-La aplicación utiliza:
-
-useState
-
-Para estados locales.
-
-useEffect
-
-Para carga de datos.
-
-useMemo
-
-Para optimización de filtros y búsquedas.
-
-useCallback
-
-Para optimización de funciones reutilizadas.
-
-Context API
-CartContext
-
-Gestión global del carrito.
-
-OrderContext
-
-Gestión global de pedidos.
-
-Funcionalidades implementadas
-Home moderna.
-Navbar con menú desplegable.
-Footer.
-Catálogo avanzado.
-Filtros.
-Comparador.
-Selección de tallas.
-Carrito.
-Checkout.
-Información de pago.
-Administración.
-Gestión de pedidos.
-API REST.
-Arquitectura por capas.
-Metodología de trabajo
-
-Durante el desarrollo se utilizó Kanban mediante Trello para organizar las tareas.
-
-Columnas utilizadas:
-
-Backlog
-Todo
-In Progress
-Review
-Done
+npm run server
 Documentación
 
-Toda la documentación del proyecto se encuentra en:
+Toda la documentación del proyecto se encuentra dentro de la carpeta:
 
 docs/
 
-Incluye:
+Documentos incluidos:
 
-Agile
-Arquitectura
-Componentes
-Hooks
-Context API
-Routing
-Formularios
-API
-Cliente API
-Testing
-Deployment
-Retrospectiva
-Tablero Trello
+agile.md
+idea.md
+project-management.md
+design.md
+components.md
+hooks.md
+context.md
+routing.md
+forms.md
+api.md
+api-client.md
+testing.md
+deployment.md
+retrospective.md
+Tablero de trabajo
 
-Añadir enlace del tablero:
+Trello utilizado para la gestión del proyecto:
 
-https://trello.com/tu-tablero
-Despliegue
+Añadir aquí la URL de tu tablero.
+
+URLs de producción
 
 Frontend:
+(https://pulsewear-manager-ke21.vercel.app/)
 
-Añadir URL de Vercel
+API:
 
-Backend:
+https://pulsewear-manager-ke21.vercel.app/api/v1/products
 
-Añadir URL de la API
+Trello:
+https://trello.com/b/w42j7TUe/pulsewear-desarrollo-fullstack
+
 Autor
 
-Proyecto desarrollado por Santiago Falla Romero como práctica de desarrollo fullstack utilizando React, TypeScript, Express y metodologías ágiles.
+Santiago Falla Romero
 
-Licencia
-
-Proyecto desarrollado con fines educativos.
+Proyecto desarrollado como práctica de React, TypeScript, Express y arquitectura fullstack.

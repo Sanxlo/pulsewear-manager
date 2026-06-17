@@ -1,90 +1,126 @@
-Despliegue de la aplicación
-Introducción
+Deployment
+Objetivo
 
-Una vez finalizado el desarrollo de PulseWear se procedió a preparar la aplicación para su despliegue en producción.
+El objetivo del despliegue fue publicar la aplicación completa para que pudiera utilizarse desde cualquier navegador sin necesidad de ejecutar el entorno local.
 
-El objetivo del despliegue es permitir que cualquier usuario pueda acceder a la aplicación desde Internet sin necesidad de ejecutar el proyecto localmente.
+La aplicación está compuesta por:
 
+Frontend desarrollado con React y TypeScript.
+API REST desplegada mediante funciones serverless en Vercel.
 Plataforma utilizada
 
-Para el despliegue se eligió Vercel.
+Se utilizó Vercel debido a su integración directa con GitHub y su compatibilidad con proyectos creados con Vite.
 
-Motivos
-Integración sencilla con GitHub.
-Despliegue automático.
-Soporte para aplicaciones React.
-Configuración rápida.
-Entorno gratuito para proyectos educativos.
+Sitio oficial:
+
+https://vercel.com
+
+Preparación del proyecto
+
+Antes del despliegue se verificó:
+
+Correcta compilación del frontend.
+Funcionamiento de React Router.
+Funcionamiento de la API.
+Ausencia de errores críticos en consola.
+Configuración del repositorio GitHub.
 Despliegue del frontend
+Paso 1
 
-El frontend desarrollado con React y Vite fue desplegado utilizando Vercel.
+Subir el proyecto a GitHub.
 
-Pasos realizados
-Crear una cuenta en Vercel.
-Conectar el repositorio de GitHub.
-Seleccionar el proyecto PulseWear.
-Configurar el framework como Vite.
-Ejecutar el despliegue.
-Variables de entorno
+Paso 2
 
-Para facilitar futuras modificaciones se recomienda utilizar variables de entorno.
+Acceder a Vercel.
 
-Ejemplo:
+Paso 3
 
-VITE_API_URL=https://api-pulsewear.vercel.app/api/v1
+Seleccionar:
 
-Posteriormente la aplicación puede acceder a ella mediante:
+Add New Project
 
-const API_URL = import.meta.env.VITE_API_URL;
-Despliegue del backend
+Paso 4
 
-El backend desarrollado con Node.js y Express puede desplegarse en:
+Importar el repositorio:
 
-Vercel
-Render
-Railway
+pulsewear-manager
 
-Durante el desarrollo se utilizó:
+Paso 5
 
-http://localhost:3001/api/v1
+Configurar:
 
-En producción deberá sustituirse por la URL real del servidor.
+Build Command:
 
-Verificaciones realizadas
+npm run build
 
-Tras el despliegue se comprobaron los siguientes aspectos:
+Output Directory:
 
-Frontend
-Página principal.
-Catálogo.
-Comparador.
-Checkout.
-Administración.
-Backend
-Obtener productos.
-Obtener pedidos.
-Crear pedidos.
-Actualizar estados.
-Eliminar pedidos.
-Integración frontend y backend
+dist
 
-La comunicación entre frontend y backend se realiza mediante peticiones HTTP utilizando Fetch API.
+Install Command:
 
-Flujo:
+npm install
+Paso 6
 
-Frontend → API Client → Backend → Datos
+Pulsar Deploy.
 
-Posibles mejoras futuras
-Base de datos real.
-Dominio personalizado.
-HTTPS avanzado.
-Monitorización.
-Sistema de autenticación.
-URLs del proyecto
-Frontend
-(Añadir URL de Vercel una vez desplegado)
-Backend
-(Añadir URL de la API una vez desplegada)
+Despliegue de la API
+
+La API se desplegó utilizando funciones serverless de Vercel.
+
+Se creó una carpeta:
+
+api/
+
+con un manejador que expone los endpoints necesarios.
+
+Endpoints disponibles:
+
+Productos
+GET /api/v1/products
+Pedidos
+GET /api/v1/orders
+POST /api/v1/orders
+PATCH /api/v1/orders/:id/status
+Pruebas realizadas
+
+Tras el despliegue se verificó:
+
+Catálogo
+Carga correcta de productos.
+Visualización de imágenes.
+Detalle de producto
+Visualización correcta de información.
+Selección de talla.
+Comparador
+Comparación entre productos.
+Carrito
+Añadir productos.
+Eliminar productos.
+Checkout
+Envío correcto de pedidos.
+Administración
+Listado de pedidos.
+Filtrado por estado.
+Actualización de estados.
+Eliminación de pedidos recibidos.
+Responsive
+Ordenador.
+Tablet.
+Móvil.
+Resultado final
+
+La aplicación quedó desplegada correctamente y accesible desde Internet.
+
+Frontend:
+
+Pegar URL de Vercel.
+
+API:
+
+Pegar URL de Vercel seguida de:
+
+/api/v1/products
 Conclusión
 
-El despliegue permitió convertir PulseWear en una aplicación accesible desde Internet. Gracias a Vercel y a la arquitectura desarrollada, el proceso de publicación resultó sencillo y escalable para futuras mejoras.
+El despliegue permitió publicar tanto el frontend como la API utilizando una única plataforma. Esto facilitó la integración entre cliente y servidor y permitió validar el funcionamiento completo de la aplicación en un entorno de producción.
