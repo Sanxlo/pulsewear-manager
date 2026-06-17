@@ -4,12 +4,20 @@ import type { Order } from "../types/Order";
 
 const ordersFilePath = path.join(process.cwd(), "server/src/data/orders.json");
 
+interface OrderItem {
+  id: number;
+  name: string;
+  price: number;
+  size: string;
+}
+
 interface CreateOrderData {
   customerName: string;
   email: string;
   address: string;
   phone: string;
   total: number;
+  items: OrderItem[];
 }
 
 function readOrders(): Order[] {
@@ -36,6 +44,7 @@ export const orderService = {
       address: data.address,
       phone: data.phone,
       total: data.total,
+      items: data.items,
       status: "Pendiente",
     };
 
@@ -59,4 +68,15 @@ export const orderService = {
 
     return orders[orderIndex];
   },
+  delete(id: number) {
+  const orders = readOrders();
+
+  const filteredOrders = orders.filter(
+    (order) => order.id !== id
+  );
+
+  writeOrders(filteredOrders);
+
+  return true;
+},
 };

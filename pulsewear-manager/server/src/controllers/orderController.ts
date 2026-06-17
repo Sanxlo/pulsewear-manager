@@ -10,11 +10,17 @@ export const orderController = {
   },
 
   create(req: Request, res: Response) {
-    const { customerName, email, address, phone, total } = req.body;
+    const { customerName, email, address, phone, total, items } = req.body;
 
     if (!customerName || !email || !address || !phone || !total) {
       return res.status(400).json({
         message: "Faltan campos obligatorios",
+      });
+    }
+
+    if (!Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({
+        message: "El pedido debe incluir al menos un producto",
       });
     }
 
@@ -24,6 +30,7 @@ export const orderController = {
       address,
       phone,
       total,
+      items,
     });
 
     return res.status(201).json(order);
@@ -55,4 +62,13 @@ export const orderController = {
 
     return res.status(200).json(updatedOrder);
   },
+  delete(req: Request, res: Response) {
+  const id = Number(req.params.id);
+
+  orderService.delete(id);
+
+  return res.status(200).json({
+    message: "Pedido eliminado",
+  });
+},
 };

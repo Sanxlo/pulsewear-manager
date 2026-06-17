@@ -22,13 +22,32 @@ export async function getOrders(): Promise<Order[]> {
 
   return response.json();
 }
+export async function deleteOrder(
+  id: number
+): Promise<void> {
+  const response = await fetch(
+    `${API_URL}/orders/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
 
+  if (!response.ok) {
+    throw new Error("Error al eliminar pedido");
+  }
+}
 export async function createOrder(data: {
   customerName: string;
   email: string;
   address: string;
   phone: string;
   total: number;
+  items: {
+    id: number;
+    name: string;
+    price: number;
+    size: string;
+  }[];
 }): Promise<Order> {
   const response = await fetch(`${API_URL}/orders`, {
     method: "POST",

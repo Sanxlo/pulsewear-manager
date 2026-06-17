@@ -15,7 +15,7 @@ export const products: Product[] = [
     category: "Entrenamiento",
     price: 29.99,
     rating: 4.7,
-    image: "",
+    image: "/products/camiseta.webp",
   },
   {
     id: 3,
@@ -23,7 +23,7 @@ export const products: Product[] = [
     category: "Pantalones",
     price: 34.99,
     rating: 4.8,
-    image: "",
+    image: "/products/short.webp",
   },
   {
     id: 4,
@@ -31,7 +31,7 @@ export const products: Product[] = [
     category: "Accesorios",
     price: 19.99,
     rating: 4.6,
-    image: "",
+    image: "/products/gorra.webp",
   },
   {
     id: 5,
@@ -39,7 +39,7 @@ export const products: Product[] = [
     category: "Entrenamiento",
     price: 39.99,
     rating: 4.8,
-    image: "",
+    image: "/products/leggins.webp",
   },
   {
     id: 6,
@@ -47,6 +47,6 @@ export const products: Product[] = [
     category: "Chaquetas",
     price: 69.99,
     rating: 5,
-    image: "",
+    image: "/products/jacket.jpg",
   },
 ];

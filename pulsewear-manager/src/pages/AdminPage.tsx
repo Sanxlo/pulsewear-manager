@@ -1,4 +1,12 @@
 import { Link } from "react-router-dom";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
 import { useOrders } from "../context/OrderContext";
 import { useProducts } from "../hooks/useProducts";
 
@@ -31,6 +39,21 @@ export default function AdminPage() {
   const shippedOrders = orders.filter(
     (order) => order.status === "Enviado"
   ).length;
+
+  const chartData = [
+    {
+      status: "Pendiente",
+      pedidos: pendingOrders,
+    },
+    {
+      status: "Confirmado",
+      pedidos: confirmedOrders,
+    },
+    {
+      status: "Enviado",
+      pedidos: shippedOrders,
+    },
+  ];
 
   if (ordersLoading || productsLoading) {
     return (
@@ -104,6 +127,28 @@ export default function AdminPage() {
           </p>
         </div>
       </div>
+
+      <section className="bg-white border-2 border-gray-200 rounded-3xl p-6 shadow-md mb-10">
+        <div className="mb-6">
+          <h2 className="text-3xl font-black">
+            Pedidos por estado
+          </h2>
+          <p className="text-gray-600 mt-2">
+            Distribución de los pedidos según su estado actual.
+          </p>
+        </div>
+
+        <div className="h-80">
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart data={chartData}>
+              <XAxis dataKey="status" />
+              <YAxis allowDecimals={false} />
+              <Tooltip />
+              <Bar dataKey="pedidos" />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
+      </section>
 
       <div className="grid md:grid-cols-3 gap-6">
         <div className="bg-white border rounded-3xl p-6">

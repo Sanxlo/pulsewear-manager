@@ -5,79 +5,55 @@ interface ProductCardProps {
   product: Product;
 }
 
-export default function ProductCard({
-  product,
-}: ProductCardProps) {
+export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <div
-      className="
-        bg-white
-        border-2 border-gray-300
-        rounded-3xl
-        overflow-hidden
-        shadow-md
-        hover:shadow-xl
-        hover:-translate-y-1
-        transition-all
-        duration-300
-      "
-    >
-      <div className="relative">
+    <article className="group overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-md transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+      <div className="relative h-96 overflow-hidden bg-gray-100">
         {product.image ? (
           <img
             src={product.image}
             alt={product.name}
-            className="h-64 w-full object-cover"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <div className="h-64 bg-gray-100 flex items-center justify-center">
+          <div className="flex h-full w-full items-center justify-center">
             <span className="text-gray-400">
               Imagen no disponible
             </span>
           </div>
         )}
 
-        <span className="absolute top-4 left-4 bg-white px-3 py-1 rounded-full text-xs font-semibold shadow">
+        <span className="absolute left-4 top-4 rounded-full bg-white px-3 py-1 text-xs font-bold shadow">
           {product.category}
         </span>
       </div>
 
-      <div className="p-5">
-        <h3 className="text-2xl font-black mb-2">
+      <div className="p-6">
+        <h3 className="mb-3 text-2xl font-black leading-tight">
           {product.name}
         </h3>
 
-        <p className="text-gray-500 text-sm mb-4">
+        <p className="mb-5 text-sm leading-relaxed text-gray-500">
           Prenda deportiva premium para entrenamiento y estilo urbano.
         </p>
 
-        <div className="flex items-center justify-between mb-5">
+        <div className="mb-6 flex items-center justify-between">
           <span className="text-3xl font-black">
-            {product.price}€
+            {product.price.toFixed(2)}€
           </span>
 
-          <span className="text-yellow-500 font-semibold">
-            ⭐ {product.rating}
+          <span className="font-bold text-black">
+            ★ {product.rating}
           </span>
         </div>
 
         <Link
           to={`/products/${product.id}`}
-          className="
-            block
-            text-center
-            bg-black
-            text-white
-            py-3
-            rounded-full
-            font-semibold
-            hover:bg-gray-800
-            transition
-          "
+          className="block rounded-full bg-black py-3 text-center font-bold text-white transition hover:bg-gray-800"
         >
           Ver detalle
         </Link>
       </div>
-    </div>
+    </article>
   );
 }

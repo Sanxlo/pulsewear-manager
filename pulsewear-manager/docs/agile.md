@@ -1,61 +1,79 @@
-Metodologías Ágiles
-¿Qué es Agile?
+# Metodologías de desarrollo: Agile, Scrum y Kanban
 
-Agile es una metodología de desarrollo de software basada en la colaboración, la adaptación al cambio y la entrega continua de valor. Su objetivo principal es permitir que los equipos desarrollen productos de forma flexible, respondiendo rápidamente a los cambios en los requisitos o necesidades del cliente.
+## ¿Qué es Agile?
 
-A diferencia de los métodos tradicionales, Agile divide el trabajo en pequeñas partes que se desarrollan de forma incremental, permitiendo obtener resultados funcionales en períodos cortos de tiempo.
+Agile es una forma de organizar el desarrollo de software basada en trabajar de manera flexible, iterativa y colaborativa. En lugar de intentar definir todo el proyecto desde el principio y entregar el resultado final al terminar, Agile propone dividir el trabajo en partes más pequeñas, revisar el avance con frecuencia y adaptarse a los cambios.
 
-¿Qué es Scrum?
+El objetivo principal de Agile es entregar valor de forma continua. Esto significa que el equipo intenta construir funcionalidades útiles poco a poco, recibir feedback y mejorar el producto durante el desarrollo.
 
-Scrum es un marco de trabajo ágil utilizado para gestionar proyectos de desarrollo de software. Se basa en ciclos cortos de trabajo llamados sprints, normalmente de una a cuatro semanas.
+En mi proyecto PulseWear, esta idea se aplica dividiendo el trabajo en tareas pequeñas como crear el catálogo, implementar el carrito, conectar la API, desarrollar el panel de administración y documentar el proyecto.
 
-Roles principales
-Product Owner: Define los requisitos y prioridades del producto.
-Scrum Master: Facilita el trabajo del equipo y elimina obstáculos.
-Equipo de Desarrollo: Construye el producto y entrega funcionalidades.
-Conceptos principales
-Sprint: Período de trabajo con una duración definida.
-Product Backlog: Lista de funcionalidades y requisitos del proyecto.
-Sprint Backlog: Tareas seleccionadas para un sprint específico.
-Sprint Review: Revisión del trabajo realizado.
-Sprint Retrospective: Análisis de mejoras para futuros sprints.
-¿Qué es Kanban?
+## ¿Qué es Scrum?
 
-Kanban es una metodología visual para gestionar el flujo de trabajo. Utiliza tableros divididos en columnas que representan el estado de las tareas.
+Scrum es un marco de trabajo ágil que organiza el desarrollo en ciclos cortos llamados sprints. Cada sprint suele durar entre una y cuatro semanas y tiene como objetivo entregar una parte funcional del producto.
 
-Un tablero Kanban suele incluir:
+Los conceptos principales de Scrum son:
 
-Backlog
-Todo
-In Progress
-Review
-Done
+- Product Owner: persona encargada de definir prioridades y representar las necesidades del usuario.
+- Scrum Master: persona que ayuda al equipo a seguir la metodología y eliminar bloqueos.
+- Equipo de desarrollo: grupo encargado de construir el producto.
+- Product Backlog: lista general de funcionalidades, mejoras y tareas pendientes.
+- Sprint Backlog: conjunto de tareas seleccionadas para trabajar durante un sprint.
+- Sprint Review: reunión para revisar lo desarrollado al final del sprint.
+- Sprint Retrospective: reunión para analizar qué funcionó bien y qué se puede mejorar.
 
-Las tareas avanzan de una columna a otra según su estado, permitiendo visualizar el progreso del proyecto de manera sencilla.
+Scrum es útil cuando un equipo necesita trabajar por entregas cortas, con objetivos definidos y revisiones frecuentes.
 
-Diferencias entre Scrum y Kanban
-Scrum	Kanban
-Trabaja mediante sprints	Flujo continuo de trabajo
-Tiene roles definidos	No requiere roles específicos
-Planificación al inicio de cada sprint	Priorización continua
-Entregas al finalizar cada sprint	Entregas cuando las tareas están listas
-Más estructurado	Más flexible
-¿Cuándo usar Scrum?
+## ¿Qué es Kanban?
 
-Scrum es recomendable cuando:
+Kanban es una metodología visual para organizar tareas. Se suele representar mediante un tablero con columnas que indican el estado de cada tarea. Por ejemplo:
 
-El proyecto tiene requisitos complejos.
-Existe un equipo de trabajo estable.
-Se necesitan entregas periódicas.
-Se requiere una planificación detallada.
-¿Cuándo usar Kanban?
+- Backlog
+- Todo
+- In Progress
+- Review
+- Done
 
-Kanban es recomendable cuando:
+Cada tarea se representa con una tarjeta. A medida que se avanza, la tarjeta se mueve entre columnas.
 
-Se necesita flexibilidad constante.
-Las prioridades cambian frecuentemente.
-El equipo trabaja con tareas continuas.
-Se busca visualizar el progreso de forma simple.
-Conclusión
+Kanban ayuda a ver de forma clara qué tareas están pendientes, cuáles se están desarrollando y cuáles ya se han completado. También permite detectar bloqueos y organizar mejor el flujo de trabajo.
 
-Tanto Scrum como Kanban forman parte de las metodologías ágiles y ayudan a mejorar la organización y productividad de los equipos. En este proyecto se utilizará Kanban mediante Trello para organizar las tareas de desarrollo, ya que permite gestionar el avance del trabajo de forma visual y flexible.
+En PulseWear utilicé un tablero Kanban para dividir el desarrollo en funcionalidades como frontend, backend, API, carrito, checkout, administración y documentación.
+
+## Diferencias entre Scrum y Kanban
+
+Scrum trabaja con sprints cerrados y roles definidos. Es más estructurado y suele usarse cuando el equipo quiere planificar entregas por ciclos.
+
+Kanban es más flexible. No obliga a trabajar por sprints y permite mover tareas según el avance real del proyecto. Se centra más en visualizar el flujo de trabajo y limitar el trabajo en progreso.
+
+La principal diferencia es que Scrum organiza el trabajo por iteraciones, mientras que Kanban organiza el trabajo como un flujo continuo.
+
+## ¿Cuándo usar Scrum?
+
+Scrum puede usarse cuando:
+
+- El proyecto es grande.
+- Hay varias personas trabajando.
+- Se necesitan entregas periódicas.
+- Es importante revisar el avance al final de cada sprint.
+- El equipo necesita roles y reuniones bien definidas.
+
+Por ejemplo, Scrum sería útil en una empresa que desarrolla una aplicación grande con varios módulos y necesita entregar nuevas versiones cada dos semanas.
+
+## ¿Cuándo usar Kanban?
+
+Kanban puede usarse cuando:
+
+- Se quiere una organización visual sencilla.
+- El proyecto cambia con frecuencia.
+- No se necesitan sprints cerrados.
+- Se trabaja de forma individual o en equipos pequeños.
+- Se quiere ver claramente el estado de cada tarea.
+
+En mi caso, Kanban encaja bien porque el proyecto PulseWear se fue desarrollando paso a paso, moviendo tareas desde pendientes hasta completadas.
+
+## Conclusión
+
+Agile permite desarrollar software de forma flexible y adaptada a los cambios. Scrum y Kanban son dos formas distintas de aplicar ideas ágiles. Scrum es más estructurado y funciona bien con sprints, mientras que Kanban es más visual y flexible.
+
+Para este proyecto utilicé principalmente Kanban porque me permitió organizar las tareas de PulseWear de forma clara y avanzar por funcionalidades.

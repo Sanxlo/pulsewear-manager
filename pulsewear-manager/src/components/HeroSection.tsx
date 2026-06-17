@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   return (
-    <section className="relative h-[720px] w-full overflow-hidden">
+    <section className="relative h-[600px] w-full overflow-hidden">
       <video
         autoPlay
         muted
@@ -17,32 +17,32 @@ export default function HeroSection() {
 
       <div className="relative z-10 mx-auto flex h-full max-w-7xl items-center px-6">
         <div className="max-w-3xl text-white">
-          <p className="uppercase tracking-widest text-sm font-semibold mb-4">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-widest">
             Nueva colección
           </p>
 
-          <h1 className="text-6xl lg:text-8xl font-black leading-tight">
+          <h1 className="text-5xl font-black leading-tight md:text-6xl lg:text-7xl">
             Diseñado para entrenar.
             <br />
             Creado para destacar.
           </h1>
 
-          <p className="text-xl text-gray-200 mt-6 max-w-xl">
+          <p className="mt-6 max-w-xl text-lg text-gray-200">
             Ropa deportiva premium pensada para el entrenamiento,
             el estilo urbano y el día a día.
           </p>
 
-          <div className="flex gap-4 mt-8">
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <Link
               to="/catalog"
-              className="bg-white text-black px-8 py-4 rounded-full font-bold"
+              className="rounded-full bg-white px-8 py-4 text-center font-bold text-black transition hover:bg-gray-200"
             >
               Ver Catálogo
             </Link>
 
             <Link
               to="/compare"
-              className="border border-white text-white px-8 py-4 rounded-full font-bold"
+              className="rounded-full border border-white px-8 py-4 text-center font-bold text-white transition hover:bg-white hover:text-black"
             >
               Comparar Productos
             </Link>

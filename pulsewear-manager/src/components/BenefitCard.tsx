@@ -4,12 +4,37 @@ interface BenefitCardProps {
   description: string;
 }
 
-export default function BenefitCard({ icon, title, description }: BenefitCardProps) {
+export default function BenefitCard({
+  icon,
+  title,
+  description,
+}: BenefitCardProps) {
   return (
-    <div className="rounded-2xl border p-6 text-center">
-      <div className="text-3xl mb-3">{icon}</div>
-      <h3 className="font-bold text-lg">{title}</h3>
-      <p className="text-gray-600 mt-2">{description}</p>
+    <div
+      className="
+        bg-white
+        rounded-3xl
+        border border-gray-200
+        p-8
+        text-center
+        transition-all
+        duration-300
+        hover:-translate-y-2
+        hover:shadow-xl
+        hover:border-black
+      "
+    >
+      <div className="text-4xl mb-5">
+        {icon}
+      </div>
+
+      <h3 className="font-bold text-xl mb-3">
+        {title}
+      </h3>
+
+      <p className="text-gray-500 leading-relaxed">
+        {description}
+      </p>
     </div>
   );
 }

@@ -8,3 +8,7 @@ router.post("/", orderController.create);
 router.patch("/:id/status", orderController.updateStatus);
 
 export default router;
+router.delete(
+  "/:id",
+  orderController.delete
+);

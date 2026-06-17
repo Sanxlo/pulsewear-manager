@@ -1,3 +1,10 @@
+export interface OrderItem {
+  id: number;
+  name: string;
+  price: number;
+  size: string;
+}
+
 export interface Order {
   id: number;
   customerName: string;
@@ -5,5 +12,6 @@ export interface Order {
   address: string;
   phone: string;
   total: number;
-  status: "Pendiente" | "Confirmado" | "Enviado";
+  items: OrderItem[];
+  status: "Pendiente" | "Confirmado" | "Enviado" | "Recibido";
 }

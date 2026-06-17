@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   createContext,
   useContext,
@@ -8,9 +9,17 @@ import {
 import type { Order } from "../types/Order";
 import {
   createOrder as createOrderRequest,
+  deleteOrder as deleteOrderRequest,
   getOrders,
   updateOrderStatus as updateOrderStatusRequest,
 } from "../api/client";
+
+interface OrderItemData {
+  id: number;
+  name: string;
+  price: number;
+  size: string;
+}
 
 interface CreateOrderData {
   customerName: string;
@@ -18,6 +27,7 @@ interface CreateOrderData {
   address: string;
   phone: string;
   total: number;
+  items: OrderItemData[];
 }
 
 interface OrderContextType {
@@ -25,12 +35,20 @@ interface OrderContextType {
   loading: boolean;
   error: string;
   createOrder: (data: CreateOrderData) => Promise<void>;
-  updateOrderStatus: (id: number, status: Order["status"]) => Promise<void>;
+  updateOrderStatus: (
+    id: number,
+    status: Order["status"]
+  ) => Promise<void>;
+  deleteOrder: (id: number) => Promise<void>;
 }
 
 const OrderContext = createContext<OrderContextType | null>(null);
 
-export function OrderProvider({ children }: { children: ReactNode }) {
+export function OrderProvider({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -50,17 +68,41 @@ export function OrderProvider({ children }: { children: ReactNode }) {
     loadOrders();
   }, []);
 
-  const createOrder = async (data: CreateOrderData) => {
+  const createOrder = async (
+    data: CreateOrderData
+  ) => {
     const newOrder = await createOrderRequest(data);
-    setOrders((prev) => [...prev, newOrder]);
+
+    setOrders((prev) => [
+      ...prev,
+      newOrder,
+    ]);
   };
 
-  const updateOrderStatus = async (id: number, status: Order["status"]) => {
-    const updatedOrder = await updateOrderStatusRequest(id, status);
+  const updateOrderStatus = async (
+    id: number,
+    status: Order["status"]
+  ) => {
+    const updatedOrder =
+      await updateOrderStatusRequest(id, status);
 
     setOrders((prev) =>
       prev.map((order) =>
-        order.id === id ? updatedOrder : order
+        order.id === id
+          ? updatedOrder
+          : order
+      )
+    );
+  };
+
+  const deleteOrder = async (
+    id: number
+  ) => {
+    await deleteOrderRequest(id);
+
+    setOrders((prev) =>
+      prev.filter(
+        (order) => order.id !== id
       )
     );
   };
@@ -73,6 +115,7 @@ export function OrderProvider({ children }: { children: ReactNode }) {
         error,
         createOrder,
         updateOrderStatus,
+        deleteOrder,
       }}
     >
       {children}
@@ -81,10 +124,13 @@ export function OrderProvider({ children }: { children: ReactNode }) {
 }
 
 export function useOrders(): OrderContextType {
-  const context = useContext(OrderContext);
+  const context =
+    useContext(OrderContext);
 
   if (!context) {
-    throw new Error("useOrders debe utilizarse dentro de OrderProvider");
+    throw new Error(
+      "useOrders debe utilizarse dentro de OrderProvider"
+    );
   }
 
   return context;
