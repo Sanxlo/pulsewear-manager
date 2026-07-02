@@ -13,6 +13,12 @@ type ApiResponse = {
   };
 };
 
+type Order = {
+  id: number;
+  status: string;
+  [key: string]: unknown;
+};
+
 const products = [
   {
     id: 1,
@@ -64,7 +70,7 @@ const products = [
   },
 ];
 
-let orders: unknown[] = [];
+let orders: Order[] = [];
 
 export default function handler(
   req: ApiRequest,
@@ -81,7 +87,7 @@ export default function handler(
   }
 
   if (req.method === "POST" && url.includes("/api/v1/orders")) {
-    const newOrder = {
+    const newOrder: Order = {
       id: Date.now(),
       ...req.body,
       status: "Pendiente",
@@ -90,6 +96,66 @@ export default function handler(
     orders = [...orders, newOrder];
 
     return res.status(201).json(newOrder);
+  }
+
+  if (
+    req.method === "PATCH" &&
+    url.includes("/api/v1/orders/") &&
+    url.includes("/status")
+  ) {
+    const id = Number(
+      url.split("/api/v1/orders/")[1]?.split("/status")[0]
+    );
+
+    const status = req.body?.status;
+
+    if (!status) {
+      return res.status(400).json({
+        message: "Estado no enviado",
+      });
+    }
+
+    const updatedOrder = orders.find((order) => order.id === id);
+
+    if (!updatedOrder) {
+      return res.status(404).json({
+        message: "Pedido no encontrado",
+      });
+    }
+
+    orders = orders.map((order) =>
+      order.id === id
+        ? {
+            ...order,
+            status,
+          }
+        : order
+    );
+
+    return res.status(200).json({
+      ...updatedOrder,
+      status,
+    });
+  }
+
+  if (req.method === "DELETE" && url.includes("/api/v1/orders/")) {
+    const id = Number(
+      url.split("/api/v1/orders/")[1]?.split("?")[0]
+    );
+
+    const orderExists = orders.some((order) => order.id === id);
+
+    if (!orderExists) {
+      return res.status(404).json({
+        message: "Pedido no encontrado",
+      });
+    }
+
+    orders = orders.filter((order) => order.id !== id);
+
+    return res.status(200).json({
+      message: "Pedido eliminado",
+    });
   }
 
   return res.status(404).json({
