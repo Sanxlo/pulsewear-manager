@@ -21,11 +21,11 @@ Demo
 
 Frontend desplegado:
 
-(https://pulsewear-manager-ke21.vercel.app/)
+https://pulsewear-manager-ivf7.vercel.app/
 
 API de productos:
 
-(https://pulsewear-manager-ke21.vercel.app/api/v1/products)
+https://pulsewear-manager-ivf7.vercel.app/api/v1/products
 
 Trello:
 https://trello.com/b/w42j7TUe/pulsewear-desarrollo-fullstack
